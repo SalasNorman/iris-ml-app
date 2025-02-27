@@ -1,0 +1,8 @@
+name: iris_project
+dependencies:
+  - python=3.12
+  - flask
+  - numpy
+  - pandas
+  - scikit-learn
+  - gunicorn
