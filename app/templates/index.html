@@ -6,36 +6,81 @@
     <title>Iris Species Prediction</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             text-align: center;
-            background-color: #222;
+            background: linear-gradient(135deg, #1c1c1e, #2c2c2e);
             color: white;
+            margin: 0;
+            padding: 20px;
         }
-        table {
-            width: 60%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #fff;
-            cursor: pointer;
-        }
-        th {
-            background-color: #444;
-        }
-        tr:hover {
-            background-color: #555;
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
         input {
-            width: 100px;
-            padding: 8px;
-            margin: 5px;
+            width: 85%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: none;
+            text-align: center;
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+        }
+        input::placeholder {
+            color: #d1d1d6;
         }
         button {
-            padding: 10px;
+            padding: 15px 30px;
             margin-top: 10px;
+            border: none;
+            border-radius: 15px;
+            background: #007aff;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #005ecb;
+        }
+        .loading {
+            display: none;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .prediction {
+            font-size: 22px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #30d158;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #fff;
+            cursor: pointer;
+            text-align: center;
+        }
+        th {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.3);
         }
     </style>
     <script>
@@ -45,23 +90,34 @@
             document.getElementById("petal_length").value = petalL;
             document.getElementById("petal_width").value = petalW;
         }
-    </script>
+        function showLoading() {
+            document.getElementById("loading").style.display = "block";
+        }
+        function clearInputs() {
+        document.getElementById('sepal_length').value = '';
+        document.getElementById('sepal_width').value = '';
+        document.getElementById('petal_length').value = '';
+        document.getElementById('petal_width').value = '';
+    }
+
+</script>
 </head>
 <body>
-
-    <h2>Iris Species Prediction</h2>
-
-    <form action="/predict" method="post">
-        <input type="text" id="sepal_length" name="sepal_length" placeholder="Sepal Length" required>
-        <input type="text" id="sepal_width" name="sepal_width" placeholder="Sepal Width" required>
-        <input type="text" id="petal_length" name="petal_length" placeholder="Petal Length" required>
-        <input type="text" id="petal_width" name="petal_width" placeholder="Petal Width" required>
-        <br>
-        <button type="submit">Predict</button>
-    </form>
-
-    <h3>{{ prediction_text }}</h3>
-
+    <div class="container">
+        <h1>Iris Species Predictor</h1>
+        <p>Enter flower measurements to predict its species.</p>
+        <form action="/predict" method="post" onsubmit="showLoading()">
+            <input type="text" id="sepal_length" name="sepal_length" placeholder="Sepal Length (cm)" required>
+            <input type="text" id="sepal_width" name="sepal_width" placeholder="Sepal Width (cm)" required>
+            <input type="text" id="petal_length" name="petal_length" placeholder="Petal Length (cm)" required>
+            <input type="text" id="petal_width" name="petal_width" placeholder="Petal Width (cm)" required>
+            <br>
+            <button type="submit">Predict</button>
+            <button type="button" onclick="clearInputs()" style="background: #ff3b30; margin-left: 10px;">Clear</button>
+</form>
+        <div id="loading" class="loading">Predicting...</div>
+        <div class="prediction">{{ prediction_text }}</div>
+    </div>
     <h3>Sample Data</h3>
     <table>
         <tr>
@@ -90,6 +146,5 @@
             <td>5.6</td><td>2.5</td><td>3.9</td><td>1.1</td><td>versicolor</td>
         </tr>
     </table>
-
 </body>
 </html>

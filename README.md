@@ -14,7 +14,6 @@ iris_project/
 │── notebooks/
 │   │── 01_data_exploration.ipynb  # Data Exploration Notebook
 │   │── 02_model_training.ipynb  # Model Training Notebook
-│── train.py  # Script to train the model
 │── environment.yml  # Conda environment file
 │── README.md  # Project documentation
 ```
@@ -83,9 +82,7 @@ The dataset used in this project is from Kaggle and is licensed under **CC0 (Pub
 - Input test values and verify predictions
 
 ## 7. **Deploy the Application (Optional)**
-- Deploy on **Heroku, Render, or AWS**
-- Use `gunicorn` + `nginx` for production
-- Set up a **domain name** for public access
+- to do
 
 ## ✅ **Project Completion**
 If everything works, the **ML web project is complete!** 🚀
