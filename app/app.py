@@ -1,5 +1,3 @@
-# Flask API: app.py
-
 from flask import Flask, request, jsonify, render_template
 import pickle
 import numpy as np
@@ -30,20 +28,18 @@ def predict():
         # Get input data from form
         data = [float(x) for x in request.form.values()]
         features = np.array(data).reshape(1, -1)
-        # Map numerical predictions to species names
         species_map = {0: "setosa", 1: "versicolor", 2: "virginica"}
         prediction = model.predict(features)[0]
-
-        # Convert numeric prediction to species name
         prediction_text = species_map.get(prediction, "Unknown species")
 
-        return render_template("index.html", prediction_text=f"Predicted Species: {prediction_text}")
-
+        # Map prediction to corresponding image
+        image_path = f"/static/images/{prediction_text.lower()}.png"
         
-        return render_template("index.html", prediction_text=f"Predicted Species: {prediction}")
+        # Render template with prediction and image
+        return render_template("index.html", prediction_text=f"Predicted Species: {prediction_text}", image_path=image_path)
     except Exception as e:
         return jsonify({"error": str(e)})
 
 # Run the Flask app
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

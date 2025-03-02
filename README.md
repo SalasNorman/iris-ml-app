@@ -14,8 +14,10 @@ iris_project/
 │── notebooks/
 │   │── 01_data_exploration.ipynb  # Data Exploration Notebook
 │   │── 02_model_training.ipynb  # Model Training Notebook
+│── Dockerfile
 │── environment.yml  # Conda environment file
 │── README.md  # Project documentation
+│── requirement.yml   
 ```
 ## 📊 Dataset  
 The dataset used in this project is from Kaggle and is licensed under **CC0 (Public Domain)**.  

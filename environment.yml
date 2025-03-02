@@ -3,6 +3,5 @@ dependencies:
   - python=3.12
   - flask
   - numpy
-  - pandas
-  - scikit-learn
   - gunicorn
+  - scikit-learn
