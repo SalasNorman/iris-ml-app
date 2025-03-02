@@ -27,7 +27,7 @@ The dataset used in this project is from Kaggle and is licensed under **CC0 (Pub
 ## 1. **Setup Environment**
 - Create a Conda environment:  
   ```bash
-  conda create -n iris_project python=3.9 -y
+  conda create -n iris_project python=3.12 -y
   conda activate iris_project
   ```
 - Install necessary libraries:  
@@ -84,7 +84,15 @@ The dataset used in this project is from Kaggle and is licensed under **CC0 (Pub
 - Input test values and verify predictions
 
 ## 7. **Deploy the Application (Optional)**
-- to do
+- Build the Docker image:
+  ```bash
+  docker build -t iris-app .
+  ```
+-  Run the Docker container:
+  ```bash
+  docker run -d -p 5000:5000 iris-app
+  ```
+- Test the app at: http://localhost:5000
 
 ## ✅ **Project Completion**
 If everything works, the **ML web project is complete!** 🚀
